@@ -1,0 +1,236 @@
+import { defineField, defineType } from 'sanity'
+
+export default defineType({
+  name: 'blogSearchStyle',
+  title: 'Blog Search Style',
+  type: 'document',
+  groups: [
+    { name: 'labels', title: 'Labels', default: true },
+    { name: 'inputs', title: 'Input Fields' },
+    { name: 'searchBtn', title: 'Search Button' },
+    { name: 'clearBtn', title: 'Clear Button' },
+    { name: 'layout', title: 'Layout' },
+  ],
+  fields: [
+    // ── Labels ────────────────────────────────────────────────────────────────
+    defineField({
+      name: 'labelColor',
+      title: 'Label Color',
+      type: 'color',
+      group: 'labels',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'labelFontSize',
+      title: 'Label Font Size (px)',
+      type: 'number',
+      group: 'labels',
+    }),
+
+    // ── Input Fields ──────────────────────────────────────────────────────────
+    defineField({
+      name: 'inputBackgroundColor',
+      title: 'Input Background Color',
+      type: 'color',
+      group: 'inputs',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'inputTextColor',
+      title: 'Input Text Color',
+      type: 'color',
+      group: 'inputs',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'inputPlaceholderColor',
+      title: 'Placeholder Color',
+      type: 'color',
+      group: 'inputs',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'inputBorderColor',
+      title: 'Input Border Color',
+      type: 'color',
+      group: 'inputs',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'inputBorderWidth',
+      title: 'Input Border Width (px)',
+      type: 'number',
+      group: 'inputs',
+      initialValue: 1,
+    }),
+    defineField({
+      name: 'inputBorderRadius',
+      title: 'Input Border Radius (px)',
+      type: 'number',
+      group: 'inputs',
+      initialValue: 6,
+    }),
+    defineField({
+      name: 'inputFocusBorderColor',
+      title: 'Input Focus Border Color',
+      type: 'color',
+      group: 'inputs',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'inputPaddingX',
+      title: 'Input Padding X (px)',
+      type: 'number',
+      group: 'inputs',
+      initialValue: 12,
+    }),
+    defineField({
+      name: 'inputPaddingY',
+      title: 'Input Padding Y (px)',
+      type: 'number',
+      group: 'inputs',
+      initialValue: 8,
+    }),
+
+    // ── Search Button ─────────────────────────────────────────────────────────
+    defineField({
+      name: 'searchBtnBackgroundColor',
+      title: 'Background Color',
+      type: 'color',
+      group: 'searchBtn',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'searchBtnTextColor',
+      title: 'Text Color',
+      type: 'color',
+      group: 'searchBtn',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'searchBtnHoverBackgroundColor',
+      title: 'Hover Background Color',
+      type: 'color',
+      group: 'searchBtn',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'searchBtnHoverTextColor',
+      title: 'Hover Text Color',
+      type: 'color',
+      group: 'searchBtn',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'searchBtnBorderColor',
+      title: 'Border Color',
+      type: 'color',
+      group: 'searchBtn',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'searchBtnBorderWidth',
+      title: 'Border Width (px)',
+      type: 'number',
+      group: 'searchBtn',
+      initialValue: 0,
+    }),
+    defineField({
+      name: 'searchBtnBorderRadius',
+      title: 'Border Radius (px)',
+      type: 'number',
+      group: 'searchBtn',
+      initialValue: 5,
+    }),
+    defineField({
+      name: 'searchBtnPaddingX',
+      title: 'Padding X (px)',
+      type: 'number',
+      group: 'searchBtn',
+      initialValue: 20,
+    }),
+    defineField({
+      name: 'searchBtnPaddingY',
+      title: 'Padding Y (px)',
+      type: 'number',
+      group: 'searchBtn',
+      initialValue: 8,
+    }),
+    defineField({
+      name: 'searchBtnFontSize',
+      title: 'Font Size (px)',
+      type: 'number',
+      group: 'searchBtn',
+    }),
+    defineField({
+      name: 'searchBtnLabel',
+      title: 'Button Label',
+      type: 'string',
+      group: 'searchBtn',
+      initialValue: 'Search',
+    }),
+
+    // ── Clear Button ──────────────────────────────────────────────────────────
+    defineField({
+      name: 'clearBtnTextColor',
+      title: 'Text Color',
+      type: 'color',
+      group: 'clearBtn',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'clearBtnHoverTextColor',
+      title: 'Hover Text Color',
+      type: 'color',
+      group: 'clearBtn',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'clearBtnFontSize',
+      title: 'Font Size (px)',
+      type: 'number',
+      group: 'clearBtn',
+    }),
+    defineField({
+      name: 'clearBtnLabel',
+      title: 'Button Label',
+      type: 'string',
+      group: 'clearBtn',
+      initialValue: 'Clear',
+    }),
+
+    // ── Layout ─────────────────────────────────────────────────────────────────
+    defineField({
+      name: 'wrapperBackgroundColor',
+      title: 'Wrapper Background Color',
+      type: 'color',
+      group: 'layout',
+      options: { enableAlpha: true },
+    }),
+    defineField({
+      name: 'wrapperPaddingX',
+      title: 'Wrapper Padding X (px)',
+      type: 'number',
+      group: 'layout',
+    }),
+    defineField({
+      name: 'wrapperPaddingY',
+      title: 'Wrapper Padding Y (px)',
+      type: 'number',
+      group: 'layout',
+    }),
+    defineField({
+      name: 'wrapperBorderRadius',
+      title: 'Wrapper Border Radius (px)',
+      type: 'number',
+      group: 'layout',
+    }),
+    defineField({
+      name: 'gap',
+      title: 'Gap Between Fields (px)',
+      type: 'number',
+      group: 'layout',
+      initialValue: 12,
+    }),
+  ],
+})

@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+
+# Sanity
+dist/
+.sanity/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Migration/temp scripts
+Structure/sanitydev/migrate-colors.mjs
+Structure/sanitydev/fix-export.mjs
+Structure/sanitydev/check-slider.mjs
+Structure/sanitydev/check-slider-full.mjs
+Structure/sanitydev/delete-color-docs.mjs
+Structure/sanitydev/export-work/
+Structure/sanitydev/dataset-backup.tar.gz
+Structure/sanitydev/fixed-backup.tar.gz

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+hypersite/build/
+**/dist/
+**/out/
+
+# Environment files
+.env
+**/.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Sanity
+sanity/.sanity/runtime/

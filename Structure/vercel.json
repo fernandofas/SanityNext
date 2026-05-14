@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "functions": {
+    "api/**/*.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "headers": [
+    {
+      "source": "/static/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.:ext(js|css|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2|ttf|eot)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt", 
+      "destination": "/api/robots.txt"
+    }
+  ],
+  "env": {
+    "SANITY_PROJECT_ID": "2utyyftn",
+    "SANITY_DATASET": "production",
+    "REACT_APP_SANITY_PROJECT_ID": "2utyyftn",
+    "REACT_APP_SANITY_DATASET": "production"
+  }
+}
