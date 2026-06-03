@@ -21,7 +21,7 @@ Open two terminals:
 ```powershell
 cd nextsite
 npm install
-cp .env.local.example .env.local   # add your Sanity project ID, dataset, and other vars
+cp .env.example .env.local   # then fill in your values
 npm run dev
 ```
 Runs at http://localhost:3000
@@ -30,6 +30,7 @@ Runs at http://localhost:3000
 ```powershell
 cd sanitydev
 npm install
+cp .env.example .env         # then fill in your Sanity project ID
 sanity dev
 ```
 Runs at http://localhost:3333
@@ -37,24 +38,29 @@ Runs at http://localhost:3333
 ## Environment Variables
 
 ### nextsite/.env.local
+Copy `nextsite/.env.example` to `nextsite/.env.local` and fill in your values:
 ```
-NEXT_PUBLIC_SANITY_PROJECT_ID=2utyyftn
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_URL=http://localhost:3000
-JWT_SECRET=your_jwt_secret
+JWT_SECRET=your_strong_random_secret
 SMTP_HOST=smtp.office365.com
 SMTP_PORT=587
 SMTP_USER=your@email.com
 SMTP_PASS=your_password
-SMTP_FROM=your@email.com
+FROM_EMAIL=your@email.com
+FROM_NAME=Your Site Name
+SANITY_TOKEN=your_sanity_write_token
 ```
 
 ### sanitydev/.env
+Copy `sanitydev/.env.example` to `sanitydev/.env` and fill in your values:
 ```
-SANITY_TOKEN=your_sanity_api_write_token
+SANITY_STUDIO_PROJECT_ID=your_sanity_project_id
+SANITY_STUDIO_DATASET=production
 ```
 
-> **Never commit `.env` or `.env.local` files.**
+> **Never commit `.env` or `.env.local` files.** Both are gitignored. Only `.env.example` files are committed.
 
 ## Project Structure
 
@@ -188,6 +194,14 @@ Reduce `type: 'color'` fields (use `type: 'string'` instead) or delete unused do
 **Sanity Studio not reflecting schema changes**  
 Restart `sanity dev` after editing any file in `sanitydev/schemas/`.
 
+## Deploying to Vercel
+
+1. Import the repo into Vercel (choose the `Structure/nextsite` directory as the root).
+2. In **Project Settings → Environment Variables**, add all variables from `nextsite/.env.example` with your real values.
+3. Deploy — no secrets should ever be in the codebase.
+
+> The `vercel.json` `env` block uses `@variable_name` references that resolve to Vercel-managed secrets/env vars. Set the matching variables in the Vercel dashboard.
+
 ## Contributing
 
 1. Edit schemas in `sanitydev/schemas/` — restart Studio after changes.
@@ -197,6 +211,5 @@ Restart `sanity dev` after editing any file in `sanitydev/schemas/`.
 
 ## Repository
 
-GitHub: https://github.com/fernandofas/SanityNext (private)  
-Sanity Project ID: `2utyyftn` | Dataset: `production`
+GitHub: https://github.com/fernandofas/SanityNext
 

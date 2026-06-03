@@ -7,8 +7,8 @@
 - Content is authored in Sanity Studio and rendered in the Next.js frontend via GROQ queries and the Sanity client.
 - Key schema files: `sanitydev/schemas/` (e.g., `page.ts`, `sections.ts`, `columnSections.ts`, `slider.ts`, `form.ts`)
 - Data flows: Sanity Studio → GROQ API → Next.js frontend (PortableText, custom renderers)
-- Sanity project ID: `2utyyftn` | Dataset: `production`
-- GitHub: https://github.com/fernandofas/SanityNext (private)
+- Sanity project ID: set via `SANITY_STUDIO_PROJECT_ID` env var (see `sanitydev/.env.example`)
+- GitHub: https://github.com/fernandofas/SanityNext
 
 ## Developer Workflows
 - **Frontend:**

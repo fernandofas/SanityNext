@@ -10,8 +10,8 @@ export default defineConfig({
   name: 'SanityNext',
   title: 'NextSanity',
 
-  projectId: '2utyyftn',
-  dataset: 'production',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || '',
+  dataset: process.env.SANITY_STUDIO_DATASET || 'production',
 
   plugins: [
     structureTool({ structure }),
