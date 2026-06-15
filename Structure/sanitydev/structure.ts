@@ -55,6 +55,14 @@ export const structure: StructureResolver = (S, context) => {
         S.documentTypeListItem('accordion').title('Accordion / FAQ'),
         S.documentTypeListItem('slider').title('Sliders'),
         S.documentTypeListItem('cookieBanner').title('Cookie Banner'),
+        S.listItem()
+          .title('Cookie Banner Pop Up Settings')
+          .child(
+            S.editor()
+              .id('cookiePopupSettings-singleton')
+              .schemaType('cookiePopupSettings')
+              .documentId('cookiePopupSettings')
+          ),
       ])
   }
 

@@ -49,7 +49,7 @@ function toRgba(color?: RgbaColor, fallback = ''): string {
   return `rgba(${r},${g},${b},${color.alpha ?? 1})`;
 }
 
-export function CookieBanner({ data }: { data?: CookieBannerData | null }) {
+export function CookieBanner({ data, popupData }: { data?: CookieBannerData | null; popupData?: any }) {
   const { showBanner, acceptAll, rejectAll } = useCookieConsent();
   const [showSettings, setShowSettings] = React.useState(false);
   const [acceptHover, setAcceptHover] = React.useState(false);
@@ -164,7 +164,7 @@ export function CookieBanner({ data }: { data?: CookieBannerData | null }) {
         </div>
       </div>
 
-      {showSettings && <CookieSettings onClose={() => setShowSettings(false)} bannerData={data} />}
+      {showSettings && <CookieSettings onClose={() => setShowSettings(false)} bannerData={data} popupData={popupData} />}
     </>
   );
 }

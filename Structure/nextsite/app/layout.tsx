@@ -15,6 +15,7 @@ import {
   footerSettingsQuery,
   footerContentQuery,
   cookieBannerQuery,
+  cookiePopupSettingsQuery,
 } from '../sanity/queries';
 import { buildMetadata } from '../lib/seo';
 import { OrganizationJsonLd, WebSiteJsonLd } from '../components/JsonLd';
@@ -42,7 +43,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   // Fetch all layout data server-side — no CORS issues
-  const [settings, globalSettings, headerData, headerSettings, footerMenus, footerSettings, footerContent, cookieBannerData] = await Promise.all([
+  const [settings, globalSettings, headerData, headerSettings, footerMenus, footerSettings, footerContent, cookieBannerData, cookiePopupData] = await Promise.all([
     sanityClient.fetch(webSettingsQuery).catch(() => null),
     sanityClient.fetch(globalSettingsQuery).catch(() => null),
     sanityClient.fetch(headerMenuQuery).catch(() => null),
@@ -51,6 +52,7 @@ export default async function RootLayout({
     sanityClient.fetch(footerSettingsQuery).catch(() => null),
     sanityClient.fetch(footerContentQuery).catch(() => null),
     sanityClient.fetch(cookieBannerQuery).catch(() => null),
+    sanityClient.fetch(cookiePopupSettingsQuery).catch(() => null),
   ]);
 
   const gaCode: string | null = settings?.gaCode || null;
@@ -102,7 +104,7 @@ export default async function RootLayout({
           <main>{children}</main>
           <Footer menus={footerMenus || []} settings={footerSettings} footerContent={footerContent} />
           <AuthModal />
-          <CookieBanner data={cookieBannerData} />
+          <CookieBanner data={cookieBannerData} popupData={cookiePopupData} />
         </Providers>
       </body>
     </html>

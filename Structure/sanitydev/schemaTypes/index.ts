@@ -26,7 +26,8 @@ import webSettings from '../schemas/webSettings'
 import video from '../schemas/video'
 import iframe from '../schemas/iframe'
 import cookieBanner from '../schemas/cookieBanner'
+import cookiePopupSettings from '../schemas/cookiePopupSettings'
 import formStyle from '../schemas/formStyle'
 import slider from '../schemas/slider'
 
-export const schemaTypes = [page, menu, menuItem, footerMenu, footerContent, footerSettings, logoHeader, headerSettings, columnSection, colunmLayout, sections, button, link, icon, imageGroup, form, formField, formStyle, author, category, blogPost, blogSearchStyle, globalSettings, userProfile, accordion, webSettings, video, iframe, cookieBanner, slider]
+export const schemaTypes = [page, menu, menuItem, footerMenu, footerContent, footerSettings, logoHeader, headerSettings, columnSection, colunmLayout, sections, button, link, icon, imageGroup, form, formField, formStyle, author, category, blogPost, blogSearchStyle, globalSettings, userProfile, accordion, webSettings, video, iframe, cookieBanner, cookiePopupSettings, slider]

@@ -406,6 +406,45 @@ export const cookieBannerQuery = `*[_type == "cookieBanner"][0]{
   cancelButtonHoverBorderColor{ rgb{ r,g,b }, alpha }
 }`;
 
+export const cookiePopupSettingsQuery = `*[_type == "cookiePopupSettings"][0]{
+  popupTitle,
+  essentialLabel,
+  essentialDescription,
+  analyticsLabel,
+  analyticsDescription,
+  marketingLabel,
+  marketingDescription,
+  alwaysOnText,
+  saveButtonText,
+  cancelButtonText,
+  overlayColor,
+  popupBackgroundColor,
+  popupTextColor,
+  popupBorderColor,
+  popupBorderWidth,
+  popupBorderRadius,
+  popupPaddingX,
+  popupPaddingY,
+  popupFontFamily,
+  popupFontSize,
+  headingFontSize,
+  headingFontWeight,
+  toggleOnColor,
+  toggleOffColor,
+  saveButtonBg,
+  saveButtonTextColor,
+  saveButtonBorderRadius,
+  saveButtonHoverBg,
+  saveButtonHoverTextColor,
+  cancelButtonBg,
+  cancelButtonTextColor,
+  cancelButtonBorderColor,
+  cancelButtonBorderRadius,
+  cancelButtonHoverBg,
+  cancelButtonHoverTextColor,
+  cancelButtonHoverBorderColor
+}`;
+
 export const redirectsQuery = `{
   "pages": *[_type == "page" && defined(redirects)]{ "slug": slug.current, redirects[]{ from, type } },
   "posts": *[_type == "blogPost" && defined(redirects)]{ "slug": slug.current, redirects[]{ from, type } }
