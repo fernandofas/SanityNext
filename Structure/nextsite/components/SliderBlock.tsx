@@ -249,8 +249,8 @@ export default function SliderBlock({ data }: { data: SliderData }) {
   const bodyFs = data?.bodyTextFontSize ?? 16;
 
   const outerStyle: React.CSSProperties = {
-    paddingTop: data?.containerPaddingTop != null ? `${data.containerPaddingTop}px` : undefined,
-    paddingBottom: data?.containerPaddingBottom != null ? `${data.containerPaddingBottom}px` : undefined,
+    marginTop: data?.containerPaddingTop != null ? `${data.containerPaddingTop}px` : undefined,
+    marginBottom: data?.containerPaddingBottom != null ? `${data.containerPaddingBottom}px` : undefined,
   };
 
   return (

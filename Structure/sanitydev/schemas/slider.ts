@@ -161,8 +161,8 @@ export default defineType({
     }),
     defineField({ name: 'borderRadius', title: 'Slider Border Radius (px)', type: 'number', group: 'dimensions', initialValue: 0 }),
     defineField({ name: 'maxWidth', title: 'Max Width (px)', type: 'number', group: 'dimensions', description: 'Leave empty to use full container width.' }),
-    defineField({ name: 'containerPaddingTop', title: 'Container Padding Top (px)', type: 'number', group: 'dimensions', initialValue: 0, description: 'Space above the slider inside its wrapper.' }),
-    defineField({ name: 'containerPaddingBottom', title: 'Container Padding Bottom (px)', type: 'number', group: 'dimensions', initialValue: 0, description: 'Space below the slider inside its wrapper.' }),
+    defineField({ name: 'containerPaddingTop', title: 'Margin Top (px)', type: 'number', group: 'dimensions', initialValue: 0, description: 'Space above the slider. Negative values pull it upward (e.g. -50).' }),
+    defineField({ name: 'containerPaddingBottom', title: 'Margin Bottom (px)', type: 'number', group: 'dimensions', initialValue: 0, description: 'Space below the slider. Negative values pull it downward (e.g. -50).' }),
 
     // ── Navigation ────────────────────────────────────────────────────────────
     defineField({ name: 'showArrows', title: 'Show Prev/Next Arrows', type: 'boolean', group: 'navigation', initialValue: true }),
