@@ -58,6 +58,8 @@ interface SliderData {
   linkBtnBorderRadius?: number;
   textPaddingX?: number;
   textPaddingY?: number;
+  containerPaddingTop?: number;
+  containerPaddingBottom?: number;
 }
 
 // Color is now a plain CSS string (e.g. "#fff", "rgba(0,0,0,0.5)")
@@ -246,7 +248,13 @@ export default function SliderBlock({ data }: { data: SliderData }) {
   const subheadingFs = data?.subheadingFontSize ?? 20;
   const bodyFs = data?.bodyTextFontSize ?? 16;
 
+  const outerStyle: React.CSSProperties = {
+    paddingTop: data?.containerPaddingTop != null ? `${data.containerPaddingTop}px` : undefined,
+    paddingBottom: data?.containerPaddingBottom != null ? `${data.containerPaddingBottom}px` : undefined,
+  };
+
   return (
+    <div style={outerStyle}>
     <div
       ref={containerRef}
       style={containerStyle}
@@ -396,6 +404,7 @@ export default function SliderBlock({ data }: { data: SliderData }) {
           ))}
         </div>
       )}
+    </div>
     </div>
   );
 }

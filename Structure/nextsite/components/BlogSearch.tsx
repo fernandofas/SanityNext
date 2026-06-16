@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { blogSearchQuery, authorBySlugQuery, blogSearchStyleQuery } from '../sanity/queries';
+import { blogSearchQuery, authorBySlugQuery, blogSearchStyleQuery, allAuthorsQuery, allCategoriesQuery } from '../sanity/queries';
 import { sanityClient } from '../lib/sanity';
 
 // Helper to convert Sanity color to rgba string
@@ -34,9 +34,13 @@ export default function BlogSearch({
   const [category, setCategory] = useState(initialCategory);
   const [date, setDate] = useState(initialDate);
   const [searchStyle, setSearchStyle] = useState<any>(null);
+  const [authors, setAuthors] = useState<{ name: string; slug: { current: string } }[]>([]);
+  const [categories, setCategories] = useState<{ title: string; slug: { current: string } }[]>([]);
 
   useEffect(() => {
     sanityClient.fetch(blogSearchStyleQuery).then((s: any) => setSearchStyle(s)).catch(() => {});
+    sanityClient.fetch(allAuthorsQuery).then((a: any[]) => setAuthors(a || [])).catch(() => {});
+    sanityClient.fetch(allCategoriesQuery).then((c: any[]) => setCategories(c || [])).catch(() => {});
   }, []);
 
   const runSearch = async (qv: string, av: string, cv: string, dv: string) => {
@@ -142,26 +146,32 @@ export default function BlogSearch({
 
       <div className="flex flex-col gap-1">
         <label className="opacity-70" style={labelStyle}>Author</label>
-        <input
-          type="text"
+        <select
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
-          placeholder="author"
           className="forminputpad bradious border focus:outline-none"
           style={inputStyle}
-        />
+        >
+          <option value="">All authors</option>
+          {authors.map((a) => (
+            <option key={a.slug?.current} value={a.slug?.current}>{a.name}</option>
+          ))}
+        </select>
       </div>
 
       <div className="flex flex-col gap-1">
         <label className="opacity-70" style={labelStyle}>Category</label>
-        <input
-          type="text"
+        <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          placeholder="category"
           className="forminputpad bradious border focus:outline-none"
           style={inputStyle}
-        />
+        >
+          <option value="">All categories</option>
+          {categories.map((c) => (
+            <option key={c.slug?.current} value={c.slug?.current}>{c.title}</option>
+          ))}
+        </select>
       </div>
 
       <div className="flex flex-col gap-1">
