@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Logo from './logoMenu';
+import { useAuth } from './AuthContext';
 
 type MenuItem = {
   label: string;
@@ -148,6 +149,7 @@ export default function Header({
   const [openItem, setOpenItem] = useState<string | null>(null);
   const router = useRouter();
   const hs = headerSettings;
+  const { user, loading, openAuth, logout } = useAuth();
 
   const isExternal = (item: MenuItem) =>
     item.linkType === 'external' || /^https?:\/\//i.test(item.link || '');
@@ -330,10 +332,33 @@ export default function Header({
           {menuZone === 'center' && <nav className="hidden xl:flex">{navLinks}</nav>}
         </div>
 
-        {/* Right zone — hamburger always here */}
+        {/* Right zone — auth button + hamburger */}
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 8 }}>
           {logoZone === 'right' && <Link href="/"><Logo /></Link>}
           {menuZone === 'right' && <nav className="hidden xl:flex">{navLinks}</nav>}
+
+          {/* Auth / profile — desktop */}
+          {!loading && !user && (
+            <button
+              onClick={() => openAuth('login')}
+              className="hidden xl:inline-block text-sm nobr opacity-80 hover:opacity-100 focus:outline-none"
+            >
+              Sign in
+            </button>
+          )}
+          {!loading && user && (
+            <div className="hidden xl:flex items-center gap-3 text-sm">
+              <Link href="/account" className="nobr opacity-80 hover:opacity-100">
+                {user.name}
+              </Link>
+              <button
+                onClick={logout}
+                className="nobr opacity-50 hover:opacity-100 focus:outline-none"
+              >
+                Sign out
+              </button>
+            </div>
+          )}
           <button
             className="nobr xl:hidden flex items-center focus:outline-none"
             onClick={() => setMobileOpen((o) => !o)}
@@ -420,6 +445,33 @@ export default function Header({
               </li>
             ))}
           </ul>
+
+          {/* Auth / profile — mobile */}
+          {!loading && !user && (
+            <button
+              onClick={() => { setMobileOpen(false); openAuth('login'); }}
+              className="w-full text-left menulink py-2 mt-2 border-t border-white/10 focus:outline-none"
+            >
+              Sign in
+            </button>
+          )}
+          {!loading && user && (
+            <div className="mt-2 border-t border-white/10 pt-2 flex flex-col gap-1">
+              <Link
+                href="/account"
+                className="menulink py-2 block"
+                onClick={() => setMobileOpen(false)}
+              >
+                My Account ({user.name})
+              </Link>
+              <button
+                onClick={() => { setMobileOpen(false); logout(); }}
+                className="w-full text-left menulink py-2 opacity-60 focus:outline-none"
+              >
+                Sign out
+              </button>
+            </div>
+          )}
         </nav>
       )}
     </header>

@@ -1,6 +1,6 @@
 # SanityNext — Sanity Studio v3
 
-This is the **Sanity Studio** for the SanityNext project. It provides the content editing interface connected to the `production` dataset of Sanity project `2utyyftn`.
+This is the **Sanity Studio** for the SanityNext project. It provides the content editing interface connected to the `production` dataset. Set your project ID in `sanitydev/.env` (see `.env.example`).
 
 ## Getting Started
 
@@ -54,7 +54,7 @@ Custom desk structure is defined in `structure.ts`. The `deskStructure.ts` file 
 ## Notes
 
 - Always restart `sanity dev` after editing schema files.
-- Sanity project ID: `2utyyftn` | Dataset: `production`
+- Sanity project ID and dataset are read from `sanitydev/.env` — see `.env.example` for required variables.
 - Frontend (Next.js) queries this dataset via GROQ — see `../nextsite/sanity/queries.ts`.
 - API write token is stored in `.env` (never commit this file).
 

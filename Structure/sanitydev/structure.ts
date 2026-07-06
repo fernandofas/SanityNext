@@ -78,6 +78,16 @@ export const structure: StructureResolver = (S, context) => {
               .schemaType('webSettings')
               .documentId('webSettings')
           ),
+        S.divider(),
+        S.documentTypeListItem('page').title('Pages'),
+        S.documentTypeListItem('blogPost').title('Blog Posts'),
+        S.documentTypeListItem('author').title('Authors'),
+        S.documentTypeListItem('category').title('Categories'),
+        S.documentTypeListItem('blogSearchStyle').title('Blog Search Style'),
+        S.divider(),
+        S.documentTypeListItem('headerSettings').title('Header Settings'),
+        S.documentTypeListItem('menu').title('Header Menu'),
+        S.documentTypeListItem('footerSettings').title('Footer Settings'),
         S.documentTypeListItem('footerMenu').title('Footer Menu'),
         S.listItem()
           .id('footerContent-singleton')
@@ -88,18 +98,16 @@ export const structure: StructureResolver = (S, context) => {
               .schemaType('footerContent')
               .documentId('footerContent')
           ),
-        S.documentTypeListItem('userProfile').title('User Profiles'),
         S.divider(),
-        S.documentTypeListItem('page'),
-        S.documentTypeListItem('blogPost'),
-        S.documentTypeListItem('accordion'),
-        S.documentTypeListItem('author'),
-        S.documentTypeListItem('category'),
+        S.documentTypeListItem('sections').title('Sections'),
+        S.documentTypeListItem('accordion').title('Accordion / FAQ'),
+        S.documentTypeListItem('slider').title('Sliders'),
+        S.documentTypeListItem('form').title('Forms'),
       ])
   }
 
   if (isSubscriber) {
-    // Subscribers shouldn't manage Studio content by default; show nothing
+    // Subscribers manage their account via the frontend (/account page), not Studio.
     return S.list().title('Content').items([])
   }
 

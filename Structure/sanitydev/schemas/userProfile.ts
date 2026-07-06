@@ -16,11 +16,12 @@ export default defineType({
       name: 'role',
       title: 'Role',
       type: 'string',
+      description: 'Controls what this user can access. Administrator: full Studio access + user management. Editor: can manage pages, blog posts, menus, sections. Subscriber: frontend account only, no Studio access.',
       options: {
         list: [
-          { title: 'Administrator', value: 'administrator' },
-          { title: 'Editor', value: 'editor' },
-          { title: 'Subscriber', value: 'subscriber' },
+          { title: 'Administrator — full Studio access, manage all content and users', value: 'administrator' },
+          { title: 'Editor — manage pages, blog posts, menus, sections', value: 'editor' },
+          { title: 'Subscriber — frontend account only (no Studio access)', value: 'subscriber' },
         ],
         layout: 'radio'
       },
