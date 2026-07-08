@@ -22,6 +22,8 @@ export default defineType({
     defineField({ name: 'modalPaddingX',    title: 'Modal Padding Horizontal (px)', type: 'number', group: 'modal', initialValue: 24 }),
     defineField({ name: 'modalPaddingY',    title: 'Modal Padding Vertical (px)',   type: 'number', group: 'modal', initialValue: 24 }),
     defineField({ name: 'modalMaxWidth',    title: 'Modal Max Width (px)',          type: 'number', group: 'modal', initialValue: 380 }),
+    defineField({ name: 'modalBoxShadow',   title: 'Modal Box Shadow',              type: 'string', group: 'modal', description: 'CSS box-shadow value, e.g. 0 20px 60px rgba(0,0,0,0.35)' }),
+    defineField({ name: 'formGap',          title: 'Field Gap (px)',                type: 'number', group: 'modal', initialValue: 16 }),
 
     // ── Typography ────────────────────────────────────────────────────────────
     defineField({ name: 'fontFamily',       title: 'Font Family',                  type: 'string', group: 'typography' }),
@@ -38,6 +40,7 @@ export default defineType({
     // ── Input Fields ──────────────────────────────────────────────────────────
     defineField({ name: 'inputBgColor',         title: 'Input Background',              type: 'color', options: { enableAlpha: true }, group: 'inputs' }),
     defineField({ name: 'inputTextColor',        title: 'Input Text Color',              type: 'color', options: { enableAlpha: true }, group: 'inputs' }),
+    defineField({ name: 'inputPlaceholderColor', title: 'Input Placeholder Color',       type: 'color', group: 'inputs' }),
     defineField({ name: 'inputBorderColor',      title: 'Input Border Color',            type: 'color', options: { enableAlpha: true }, group: 'inputs' }),
     defineField({ name: 'inputBorderWidth',      title: 'Input Border Width (px)',        type: 'number', group: 'inputs', initialValue: 1 }),
     defineField({ name: 'inputBorderRadius',     title: 'Input Border Radius (px)',       type: 'number', group: 'inputs', initialValue: 4 }),
@@ -45,6 +48,7 @@ export default defineType({
     defineField({ name: 'inputPaddingY',         title: 'Input Padding Vertical (px)',    type: 'number', group: 'inputs', initialValue: 8 }),
     defineField({ name: 'inputFontSize',         title: 'Input Font Size (px)',           type: 'number', group: 'inputs' }),
     defineField({ name: 'inputFocusBorderColor', title: 'Input Focus Border Color',       type: 'color', options: { enableAlpha: true }, group: 'inputs' }),
+    defineField({ name: 'inputFocusBgColor',     title: 'Input Focus Background',         type: 'color', group: 'inputs' }),
 
     // ── Submit Button ─────────────────────────────────────────────────────────
     defineField({ name: 'btnBg',              title: 'Button Background',           type: 'color', options: { enableAlpha: true }, group: 'button' }),
@@ -55,6 +59,10 @@ export default defineType({
     defineField({ name: 'btnBorderColor',     title: 'Button Border Color',          type: 'color', options: { enableAlpha: true }, group: 'button' }),
     defineField({ name: 'btnPaddingX',        title: 'Button Padding Horizontal (px)',type: 'number', group: 'button', initialValue: 16 }),
     defineField({ name: 'btnPaddingY',        title: 'Button Padding Vertical (px)', type: 'number', group: 'button', initialValue: 10 }),
+    defineField({
+      name: 'btnFontWeight', title: 'Button Font Weight', type: 'string', group: 'button', initialValue: '700',
+      options: { list: [{ title: 'Normal (400)', value: '400' }, { title: 'Medium (500)', value: '500' }, { title: 'Semibold (600)', value: '600' }, { title: 'Bold (700)', value: '700' }], layout: 'radio' },
+    }),
     defineField({ name: 'btnHoverBg',         title: 'Button Hover Background',      type: 'color', options: { enableAlpha: true }, group: 'button' }),
     defineField({ name: 'btnHoverTextColor',  title: 'Button Hover Text Color',      type: 'color', options: { enableAlpha: true }, group: 'button' }),
     defineField({ name: 'btnHoverBorderColor',title: 'Button Hover Border Color',    type: 'color', options: { enableAlpha: true }, group: 'button' }),
@@ -62,9 +70,17 @@ export default defineType({
     // ── Links & Close Button ──────────────────────────────────────────────────
     defineField({ name: 'linkColor',            title: 'Link Color (Register / Forgot Password)', type: 'color', options: { enableAlpha: true }, group: 'links' }),
     defineField({ name: 'linkFontSize',         title: 'Link Font Size (px)',                     type: 'number', group: 'links' }),
+    defineField({
+      name: 'linkFontWeight', title: 'Link Font Weight', type: 'string', group: 'links',
+      options: { list: [{ title: 'Normal (400)', value: '400' }, { title: 'Medium (500)', value: '500' }, { title: 'Semibold (600)', value: '600' }, { title: 'Bold (700)', value: '700' }], layout: 'radio' },
+    }),
     defineField({ name: 'linkHoverColor',       title: 'Link Hover Color',                        type: 'color', options: { enableAlpha: true }, group: 'links' }),
     defineField({ name: 'closeButtonColor',     title: 'Close Button (×) Color',                 type: 'color', options: { enableAlpha: true }, group: 'links' }),
     defineField({ name: 'closeButtonHoverColor',title: 'Close Button Hover Color',               type: 'color', options: { enableAlpha: true }, group: 'links' }),
+    defineField({ name: 'closeButtonSize',      title: 'Close Button Size (px)',                  type: 'number', group: 'links', initialValue: 22 }),
+    defineField({ name: 'passwordToggleColor',  title: 'Show/Hide Password Text Color',           type: 'color', group: 'links' }),
+    defineField({ name: 'passwordToggleHoverColor', title: 'Show/Hide Password Hover Color',      type: 'color', group: 'links' }),
+    defineField({ name: 'passwordToggleFontSize', title: 'Show/Hide Password Font Size (px)',     type: 'number', group: 'links', initialValue: 12 }),
 
     // ── Content Labels ────────────────────────────────────────────────────────
     defineField({ name: 'signInTitle',               title: 'Sign In Title',                    type: 'string', group: 'content', initialValue: 'Sign In' }),
