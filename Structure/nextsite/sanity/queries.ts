@@ -4,6 +4,39 @@
 // Shared projection fragments
 // ---------------------------------------------------------------------------
 
+export const authSettingsQuery = `*[_type == "authSettings"][0]{
+  overlayColor{ rgb{ r,g,b }, alpha },
+  modalBgColor{ rgb{ r,g,b }, alpha },
+  modalBorderColor{ rgb{ r,g,b }, alpha },
+  modalBorderWidth, modalBorderRadius, modalPaddingX, modalPaddingY, modalMaxWidth,
+  fontFamily,
+  textColor{ rgb{ r,g,b }, alpha },
+  fontSize, headingFontSize, headingFontWeight,
+  headingColor{ rgb{ r,g,b }, alpha },
+  errorColor{ rgb{ r,g,b }, alpha },
+  inputBgColor{ rgb{ r,g,b }, alpha },
+  inputTextColor{ rgb{ r,g,b }, alpha },
+  inputBorderColor{ rgb{ r,g,b }, alpha },
+  inputBorderWidth, inputBorderRadius, inputPaddingX, inputPaddingY, inputFontSize,
+  inputFocusBorderColor{ rgb{ r,g,b }, alpha },
+  btnBg{ rgb{ r,g,b }, alpha },
+  btnTextColor{ rgb{ r,g,b }, alpha },
+  btnFontSize, btnBorderRadius, btnBorderWidth,
+  btnBorderColor{ rgb{ r,g,b }, alpha },
+  btnPaddingX, btnPaddingY,
+  btnHoverBg{ rgb{ r,g,b }, alpha },
+  btnHoverTextColor{ rgb{ r,g,b }, alpha },
+  btnHoverBorderColor{ rgb{ r,g,b }, alpha },
+  linkColor{ rgb{ r,g,b }, alpha },
+  linkFontSize,
+  linkHoverColor{ rgb{ r,g,b }, alpha },
+  closeButtonColor{ rgb{ r,g,b }, alpha },
+  closeButtonHoverColor{ rgb{ r,g,b }, alpha },
+  signInTitle, registerTitle, signInBtnLabel, registerBtnLabel,
+  registerLinkLabel, forgotPasswordLabel, alreadyHaveAccountLabel,
+  registrationSuccessMessage, backToSignInLabel
+}`;
+
 const PT_CONTENT = `
   ...,
   asset->{ _id, url, metadata { dimensions { width, height } }, altText, title, originalFilename },
@@ -195,6 +228,8 @@ export const footerMenusQuery = `*[_type == "footerMenu"]{
       linkType == "page" && defined(page->slug.current) => "/" + page->slug.current,
       linkType == "custom" && defined(path) => path,
       linkType == "email" && defined(emailAddress) => "mailto:" + emailAddress,
+      linkType == "auth" => "__auth__",
+      linkType == "logout" => "__logout__",
       true => "#"
     )
   }

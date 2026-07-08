@@ -27,6 +27,14 @@ export const structure: StructureResolver = (S, context) => {
               .schemaType('webSettings')
               .documentId('webSettings')
           ),
+        S.listItem()
+          .title('Sign In / Register Pop Up Style')
+          .child(
+            S.editor()
+              .id('authSettings-singleton')
+              .schemaType('authSettings')
+              .documentId('authSettings')
+          ),
         S.documentTypeListItem('userProfile').title('User Profiles'),
 
         S.divider(),

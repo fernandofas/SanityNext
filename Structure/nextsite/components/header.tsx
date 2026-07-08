@@ -9,7 +9,7 @@ import { useAuth } from './AuthContext';
 type MenuItem = {
   label: string;
   link: string;
-  linkType?: 'page' | 'custom' | 'external';
+  linkType?: 'page' | 'custom' | 'external' | 'auth' | 'logout';
   externalUrl?: string;
   openInNewTab?: boolean;
   asButton?: boolean;
@@ -250,7 +250,17 @@ export default function Header({
     <ul className="flex items-center space-x-12">
       {menu.map((item) => (
         <li key={item.label} className="relative group flex items-center">
-          {item.subItems?.length ? (
+          {item.linkType === 'auth' ? (
+            !loading && (user ? (
+              <Link href="/account" className={`menulink focus:outline-none flex items-center gap-1${item.asButton ? ' menu-button' : ''}`} style={buildButtonStyle(item)}>{item.label}</Link>
+            ) : (
+              <button onClick={() => openAuth('login')} className={`menulink focus:outline-none flex items-center gap-1${item.asButton ? ' menu-button' : ''}`} style={buildButtonStyle(item)}>{item.label}</button>
+            ))
+          ) : item.linkType === 'logout' ? (
+            !loading && user ? (
+              <button onClick={logout} className={`menulink focus:outline-none flex items-center gap-1${item.asButton ? ' menu-button' : ''}`} style={buildButtonStyle(item)}>{item.label}</button>
+            ) : null
+          ) : item.subItems?.length ? (
             <button
               onClick={() => handleParentClick(item)}
               className="menulink focus:outline-none flex items-center gap-1"
@@ -332,33 +342,10 @@ export default function Header({
           {menuZone === 'center' && <nav className="hidden xl:flex">{navLinks}</nav>}
         </div>
 
-        {/* Right zone — auth button + hamburger */}
+        {/* Right zone — hamburger */}
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 8 }}>
           {logoZone === 'right' && <Link href="/"><Logo /></Link>}
           {menuZone === 'right' && <nav className="hidden xl:flex">{navLinks}</nav>}
-
-          {/* Auth / profile — desktop */}
-          {!loading && !user && (
-            <button
-              onClick={() => openAuth('login')}
-              className="hidden xl:inline-block text-sm nobr opacity-80 hover:opacity-100 focus:outline-none"
-            >
-              Sign in
-            </button>
-          )}
-          {!loading && user && (
-            <div className="hidden xl:flex items-center gap-3 text-sm">
-              <Link href="/account" className="nobr opacity-80 hover:opacity-100">
-                {user.name}
-              </Link>
-              <button
-                onClick={logout}
-                className="nobr opacity-50 hover:opacity-100 focus:outline-none"
-              >
-                Sign out
-              </button>
-            </div>
-          )}
           <button
             className="nobr xl:hidden flex items-center focus:outline-none"
             onClick={() => setMobileOpen((o) => !o)}
@@ -379,7 +366,17 @@ export default function Header({
           <ul className="flex flex-col space-y-2">
             {menu.map((item) => (
               <li key={item.label}>
-                {item.subItems?.length ? (
+                {item.linkType === 'auth' ? (
+                  !loading && (user ? (
+                    <Link href="/account" className={`w-full text-left menulink py-2 flex items-center gap-1${item.asButton ? ' menu-button' : ''}`} style={buildButtonStyle(item)} onClick={() => { setMobileOpen(false); setOpenItem(null); }}>{item.label}</Link>
+                  ) : (
+                    <button onClick={() => { setMobileOpen(false); openAuth('login'); }} className={`w-full text-left menulink py-2 flex items-center gap-1${item.asButton ? ' menu-button' : ''}`} style={buildButtonStyle(item)}>{item.label}</button>
+                  ))
+                ) : item.linkType === 'logout' ? (
+                  !loading && user ? (
+                    <button onClick={() => { setMobileOpen(false); logout(); }} className={`w-full text-left menulink py-2 flex items-center gap-1${item.asButton ? ' menu-button' : ''}`} style={buildButtonStyle(item)}>{item.label}</button>
+                  ) : null
+                ) : item.subItems?.length ? (
                   <button
                     onClick={() => handleParentClick(item)}
                     className="w-full text-left menulink py-2 flex items-center gap-1"
@@ -445,33 +442,6 @@ export default function Header({
               </li>
             ))}
           </ul>
-
-          {/* Auth / profile — mobile */}
-          {!loading && !user && (
-            <button
-              onClick={() => { setMobileOpen(false); openAuth('login'); }}
-              className="w-full text-left menulink py-2 mt-2 border-t border-white/10 focus:outline-none"
-            >
-              Sign in
-            </button>
-          )}
-          {!loading && user && (
-            <div className="mt-2 border-t border-white/10 pt-2 flex flex-col gap-1">
-              <Link
-                href="/account"
-                className="menulink py-2 block"
-                onClick={() => setMobileOpen(false)}
-              >
-                My Account ({user.name})
-              </Link>
-              <button
-                onClick={() => { setMobileOpen(false); logout(); }}
-                className="w-full text-left menulink py-2 opacity-60 focus:outline-none"
-              >
-                Sign out
-              </button>
-            </div>
-          )}
         </nav>
       )}
     </header>

@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 import portableTextComponents from './pte';
 import { urlFor } from '../lib/sanity';
+import { useAuth } from './AuthContext';
 
-type FooterLink = { label: string; link: string };
+type FooterLink = { label: string; link: string; linkType?: string };
 type FooterMenu = {
   title: string;
   column: string;
@@ -54,6 +55,7 @@ export default function Footer({
   settings?: FooterSettings | null;
   footerContent?: FooterContent | null;
 }) {
+  const { user, loading, openAuth, logout } = useAuth();
   const columnMap: Record<string, number> = { column1: 1, column2: 2, column3: 3, column4: 4 };
   const columns = Array.from({ length: 4 }, (_, i) =>
     menus.filter((m) => columnMap[m.column] === i + 1)
@@ -120,14 +122,19 @@ export default function Footer({
                   <ul className="nobullet space-y-2">
                     {menu.links?.map((link) => (
                       <li key={link.label}>
-                        {/^https?:\/\//.test(link.link) ? (
-                          <a href={link.link} className="sublink text-sm" target="_blank" rel="noopener noreferrer">
-                            {link.label}
-                          </a>
+                        {link.linkType === 'auth' ? (
+                          !loading && (user
+                            ? <Link href="/account" className="sublink text-sm">{link.label}</Link>
+                            : <button onClick={() => openAuth('login')} className="sublink text-sm" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>{link.label}</button>
+                          )
+                        ) : link.linkType === 'logout' ? (
+                          !loading && user
+                            ? <button onClick={logout} className="sublink text-sm" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>{link.label}</button>
+                            : null
+                        ) : /^https?:\/\//.test(link.link) ? (
+                          <a href={link.link} className="sublink text-sm" target="_blank" rel="noopener noreferrer">{link.label}</a>
                         ) : (
-                          <Link href={link.link} className="sublink text-sm">
-                            {link.label}
-                          </Link>
+                          <Link href={link.link} className="sublink text-sm">{link.label}</Link>
                         )}
                       </li>
                     ))}

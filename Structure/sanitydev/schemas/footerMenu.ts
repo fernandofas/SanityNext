@@ -45,6 +45,8 @@ export default defineType({
                 { title: 'Page', value: 'page' },
                 { title: 'Custom Path', value: 'custom' },
                 { title: 'Email', value: 'email' },
+                { title: 'Sign In / My Account (auth)', value: 'auth' },
+                { title: 'Sign Out (logout)', value: 'logout' },
               ], layout: 'radio' },
               initialValue: 'page',
             }),
